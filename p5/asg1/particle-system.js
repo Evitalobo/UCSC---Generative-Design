@@ -12,18 +12,18 @@ class ParticleSystem {
   //constructor to create Particle System
   constructor(x, y) {
     //set location of particles
-    this.origin = createVector(x, y);
+    this.begin = createVector(x, y);
     //empty array to hold particles
     this.particles = [];
   }
 
   addParticle(x, y) {
     if (x !== undefined && y !== undefined) {
-      //if valid origin point, then create new particle
+      //if valid begin point, then create new particle
       this.particles.push(new Particle(x, y));
     } else {
       //if not valid, then push from begining point
-      this.particles.push(new Particle(this.origin.x, this.origin.y));
+      this.particles.push(new Particle(this.begin.x, this.begin.y));
     }
   }
 

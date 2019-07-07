@@ -3,7 +3,7 @@
 //sketch.js
 /*
 When sound is louder, the circles expand to a bigger size- trying to simulate rain
-Adapted from Nature of Code example from chapter 4 - moving particle system
+Adapted from https://therewasaguy.github.io/p5-music-viz/ example posted on canvas
 */
 
 let ps;
@@ -49,7 +49,6 @@ function setup() {
 function draw() {
 	//black bg
   background(0);
-
  ps.run();
  ps.addParticle(mouseX, mouseY);
 // returns an array with [soundScale] amplitude readings from lowest to highest frequencies

@@ -4,7 +4,7 @@
 a "Particle" class with the necessary properties and methods to instantiate a particle at a given position and to emit a created particle given a force and lifetime as parameters. 
 When created, a particle should be set to "dead" and when emitted it should be set to "alive". 
 When "alive", a particle should be moving according to the given force and should "die" (disappear) after it's lifetime is passed. 
-Dead particles always go back to the position it was originally created.
+Dead particles always go back to the position it was beginally created.
 Adapted from Nature of Code example from chapter 4 - moving particle system
 */
 
@@ -36,7 +36,7 @@ class Particle {
   	}
 
   	this.diameter = map(someLevel, 0, 10, 0, 100) * this.scale * theyExpand;
-    this.lifespan -= 2.0;
+    this.lifespan -= 3.0;
   }
 
   // Display
