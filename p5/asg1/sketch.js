@@ -12,93 +12,63 @@ let soundFile;
 let amplitude;
 let mapMax = 1.0;
 let fft;
-let smoothing = 0.8; // play with this, between 0 and .99
-let binCount = 1024; // size of resulting FFT array. Must be a power of 2 between 16 an 1024
-let particles =  new Array(binCount);
-
-
+let smoothing = 0.9; // Can adjust level of shifting into a size
+let soundScale = 1024; // Size of FFT array
+let particles =  new Array(soundScale);
 
 function preload(){
-
+		//preload music
 	  soundFile = loadSound('thunder.wav');
 }
 
-
-
 function setup() {
-  let start = createCanvas(640, 360);
+  let start = createCanvas(300, 400);
   fill(0);
   start.mouseClicked(togglePlay);
 
-  fft = new p5.FFT(smoothing, binCount);
+//initialize FFT and set the amplitude
+  fft = new p5.FFT(smoothing, soundScale);
   fft.setInput(soundFile);
   soundFile.amp(1.0);
-
-  ps = new ParticleSystem(createVector(width , 500));
+  //vector to hold length of particle system
+  ps = new ParticleSystem(createVector(500 , 50));
   
-	
-
-
-  // initialize the FFT, plug in our variables for smoothing and binCount
- 
-
   amplitude = new p5.Amplitude();
   amplitude.setInput(soundFile);
 
 
-   // instantiate the particles.
+   // instantiate particle system
   for (let i = 0; i < particles.length; i++) {
-    let x = map(i, 0, binCount, 0, width * 2);
+    let x = map(i, 20, soundScale, soundScale, 600);
     let y = random(0, height);
     let position = createVector(x, y);
     particles[i] = new Particle(position);
   }
-
-
 }
 
 function draw() {
-  background(200);
+	//black bg
+  background(0);
 
-  
  ps.run();
  ps.addParticle(mouseX, mouseY);
-// returns an array with [binCount] amplitude readings from lowest to highest frequencies
-  let spectrum = fft.analyze(binCount);
+// returns an array with [soundScale] amplitude readings from lowest to highest frequencies
+  let spectrum = fft.analyze(soundScale);
 
-  // update and draw all [binCount] particles!
-  // Each particle gets a level that corresponds to
-  // the level at one bin of the FFT spectrum. 
-  // This level is like amplitude, often called "energy."
-  // It will be a number between 0-255.
-	  for (let i = 0; i < binCount; i++) {
+  // Each particle is on the soundScale and uses a different energy based on the amplitude of the sound
+	  for (let i = 0; i < soundScale; i++) {
 	    let thisLevel = map(spectrum[i], 0, 255, 0, 1);
 	    
-	    // update values based on amplitude at this part of the frequency spectrum
+	    // update values based on amplitude at each frame
 	    particles[i].update( thisLevel );
-
-	   // particles[i].update( random(0,1) );
 	    // draw the particle
 	    particles[i].display();
-
-	    // update x position (in case we change the bin count while live coding)
-	    particles[i].position.x = map(i, 0, binCount, 0, width * 2);
-
-
-	  // Option #1 (move the Particle System origin)
-	  //ps.origin.set(mouseX, mouseY, 0);
-
-	  //ps.addParticle();
-	 
-	  
-	  //let ellipseHeight = map(level, 0, mapMax, height, 0);
-	 
-
+	    // update x position
+	    particles[i].position.x = map(i, 0, 500, 0, 600);
 	}
-
-
 }
 
+//Click to toggle music
 function togglePlay(){
 		if(soundFile.isPlaying()){
 			soundFile.pause();

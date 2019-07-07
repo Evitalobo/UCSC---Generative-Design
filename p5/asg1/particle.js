@@ -11,14 +11,14 @@ Adapted from Nature of Code example from chapter 4 - moving particle system
 let theyExpand = 1;
 
 class Particle {
-
+  //Particle constructor
   constructor(x, y) {
-    this.force = createVector(0, 0.25);
-    this.velocity = createVector(random(-1, 1), random(-2, 0));
+    this.force = createVector(0, 0.0005);
+    this.velocity = createVector(random(-1, 1), random(-1.5, 1.5));
     this.position = createVector(x, y);
     this.lifespan = 255.0;
-    this.scale =random(0,4);
-    this.color = [random(0, 255), random(0,255), random(0,255)];
+    this.scale =random(0,6);
+    this.color = [0, 0, random(0,255)];
   }
 
   run() {
@@ -26,10 +26,10 @@ class Particle {
     this.display();
   }
 
-  // Method to update position
+  // Update based on level(amplitude)
   update(someLevel) {
     this.velocity.add(this.force);
-    console.log(someLevel);
+    //console.log(someLevel);
     this.position.y += this.velocity.y / (someLevel*2);
     if (this.position.y > height) {
     this.position.y = 0;
@@ -39,7 +39,7 @@ class Particle {
     this.lifespan -= 2.0;
   }
 
-  // Method to display
+  // Display
   display() {
     stroke(0, this.lifespan);
     strokeWeight(.5);
@@ -48,7 +48,7 @@ class Particle {
     ellipse(this.position.x, this.position.y, this.diameter, this.diameter);
   }
 
-  // Checks if particle is dead based on lifespan
+  // If particle is dead->sends back to top
   isDead() {
     if (this.lifespan < 0.0) {
       return true;

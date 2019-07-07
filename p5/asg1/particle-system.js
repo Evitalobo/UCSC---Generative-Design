@@ -11,20 +11,24 @@ Adapted from Nature of Code example from chapter 4 - moving particle system
 class ParticleSystem {
   //constructor to create Particle System
   constructor(x, y) {
+    //set location of particles
     this.origin = createVector(x, y);
-    this.particles = [];//holds particles
+    //empty array to hold particles
+    this.particles = [];
   }
 
   addParticle(x, y) {
     if (x !== undefined && y !== undefined) {
+      //if valid origin point, then create new particle
       this.particles.push(new Particle(x, y));
     } else {
+      //if not valid, then push from begining point
       this.particles.push(new Particle(this.origin.x, this.origin.y));
     }
   }
 
   run() {
-    // Run every particle added at location
+    // Run each particle at location(x,y)
     for (let particle of this.particles) {
       particle.run();
     }
