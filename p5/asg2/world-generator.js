@@ -28,10 +28,10 @@ class WorldGenerator{
         this.height = height;
         this.depth = depth;
         this.world3d = [];
-        let threshold = .5;
-        //threshold play with
+        let threshold = .3;
+        //adjust threshold for intensity
       
-        //random height based on width and depth
+        // store world height,width and depth in world3d array
         for(let y = 0; y <height; y++){ 
         	this.world3d[y] = [];
     		for( let x = 0; x <width; x++){
@@ -51,7 +51,6 @@ class WorldGenerator{
 		    }
 		}
 	}
-
 	run() {
 	    //this.update();
 	    this.display();
@@ -63,41 +62,42 @@ class WorldGenerator{
 	     		for(let x=0;x<this.width;x++) {
 
 					for(let z=0;z<this.depth;z++) {
-						//set z depth value
+						//set z depth value to see how far away from top of world
 			 			if(z >= 0 && z < 3) {
 			 				if(this.world3d[y][x][z]) {
 	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 	     					texture(this.deep);
 	     				}
-							
-						}
-						else if (this.depth >= 3 && this.depth < 6){
+					  }else if (z >= 3 && z < 6){
 							if(this.world3d[y][x][z]) {
 	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 	     					texture(this.shallow);
 	     				}
-				       		
-				      }
-				       else if (this.depth >= 6 && this.depth < 12){
+				      }else if (z >= 6 && z < 12){
 				       	if(this.world3d[y][x][z]) {
 	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 	     					texture(this.sand);
 	     				}
-				       		
-
-
-				      }
-				       else if (this.depth >= 12 && this.depth < 17){
+				      }else if (z >= 12 && z < 17){
+				       	if(this.world3d[y][x][z]) {
+	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 				        	texture(this.grass);
-				      }
-				       else if (this.depth >= 17 && this.depth < 23){
+				        }
+				      }else if (z >= 17 && z < 23){
+				       	if(this.world3d[y][x][z]) {
+	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 				       		texture(this.stone);
-				      }
-				       else if (this.depth >= 23 && this.depth < 28){
+				       	}
+				      }else if (z >= 23 && z < 28){
+				       	if(this.world3d[y][x][z]) {
+	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 				       		texture(this.mountain);
-				      }
-				       else {
+				       	}
+				      } else {
+				       	if(this.world3d[y][x][z]) {
+	     					box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 				       		texture(this.ice);
+				       	}
 				      }
 		     			
      			}
