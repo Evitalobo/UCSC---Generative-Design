@@ -65,7 +65,7 @@ class WorldGenerator{
     // Method to display
     display() {
 
-    		strokeWeight(.3);
+    		strokeWeight(1);
 	     	for(let y=0;y<this.height;y++) {
 	     		for(let x=0;x<this.width;x++) {
 

@@ -18,8 +18,9 @@ function setup() {
 
   //noiseSeed(99);
   cam = createCamera();
-  cam.move(50,100,-130);
-  cam.lookAt(200,200,-200);
+  cam.move(-300,-300,-130);
+  cam.camera(-200,-200,130,100,100,100,-300,-300,0);
+  //cam.lookAt(200,200,-200);
 /*
   let tiltAng= map(mouseX,0,500,0,2*PI)
   cam.tilt(tiltAng);
