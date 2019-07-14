@@ -18,8 +18,8 @@ function setup() {
 
   //noiseSeed(99);
   cam = createCamera();
-  cam.move(50,50,-110);
-  cam.lookAt(0,-200,0);
+  cam.move(50,100,-130);
+  cam.lookAt(200,200,-200);
 /*
   let tiltAng= map(mouseX,0,500,0,2*PI)
   cam.tilt(tiltAng);
@@ -46,8 +46,8 @@ function draw() {
   //cam.tilt(tiltAng);
   //cam.tilt()
   
-  let dx = -(pmouseX - mouseX)/10.0;
-  let dy = -(pmouseY - mouseY)/10.0;
+  let dx = -(pmouseX - mouseX)/5.0;
+  let dy = -(pmouseY - mouseY)/5.0;
   cam.pan(dx);
   cam.tilt(dy);
 
