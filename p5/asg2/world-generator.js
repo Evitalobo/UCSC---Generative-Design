@@ -13,7 +13,7 @@ class WorldGenerator{
 		this.brickSize = 10;
 		//bricksize=6 or 16
 
-		noiseSeed(9);//make it so that you can take a string and create a new world
+		noiseSeed(90);//make it so that you can take a string and create a new world
    		//seed = 0;
    		//textures
 		this.deep = loadImage('textures/deep.png');
@@ -29,7 +29,7 @@ class WorldGenerator{
         this.height = height;
         this.depth = depth;
         this.world3d = [];
-        let threshold = .7;
+        //let threshold = .7;
         //adjust threshold for intensity
       
         // store world height,width and depth in world3d array
@@ -38,7 +38,7 @@ class WorldGenerator{
     		for( let x = 0; x <width; x++){
 
 
-    			let noiseFunc = noise(x/10 ,y/10) *depth;
+    			let noiseFunc = noise(x/10,y/10) *depth ;
 				//console.log(noiseFunc)
     			this.world3d[y][x] = [];
 				for(let z = 0; z <depth; z++){ 
@@ -59,14 +59,17 @@ class WorldGenerator{
 	run() {
 	    //this.update();
 	    this.display();
+	    //noLoop();
 	}
 
     // Method to display
     display() {
+
+    		strokeWeight(.3);
 	     	for(let y=0;y<this.height;y++) {
 	     		for(let x=0;x<this.width;x++) {
 
-					for(let z=0;z<this.depth/2;z++) {
+					for(let z=0;z<this.depth;z++) {
 						/*if(random > 0.01){
 							continue;
 						}*/
@@ -76,20 +79,20 @@ class WorldGenerator{
 						}
 						
 						//set z depth value to see how far away from top of world
-			 			if(z >= 0 && z < 3) {
+			 			if(z >= 0 && z < 8) {
 			 			texture(this.deep);
-					  }else if (z >= 3 && z < 6){
+					  }else if (z >= 8 && z < 12){
 	     					//box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 	     					texture(this.shallow);
-				      }else if (z >= 6 && z < 12){
+				      }else if (z >= 12 && z < 15){
 	     					texture(this.sand);
-				      }else if (z >= 12 && z < 17){
+				      }else if (z >= 15 && z < 18){
 				       //box(y*this.brickSize, x*this.brickSize, z*this.brickSize);
 				        	texture(this.grass);
-				      }else if (z >= 17 && z < 23){
-				       		texture(this.stone);
-				      }else if (z >= 23 && z < 28){
+				      }else if (z >= 18 && z < 21){
 				       		texture(this.mountain);
+				      }else if (z >= 21 && z < 23){
+				       		texture(this.stone);
 				      } else {
 				      		//console.log(z);
 				       		texture(this.ice);
