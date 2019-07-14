@@ -1,5 +1,5 @@
-# UCSC - Generative-Design
-Evita Lobo - CMPM 147
+# UCSC - Generative-Design -CMPM 147
+#          Evita Lobo  
 
 
 # ASG1 - Music Visualization with particle systems
