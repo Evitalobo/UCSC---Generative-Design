@@ -4,8 +4,12 @@
 
   //let worldSize =  new Array(999999999);
   let world;
-  let side=200;
-  let up=0;
+  let sideX=-20;
+  let sideY= -20;
+  let sideZ= 200;
+  let eyeX= 100;
+  let eyeY =100;
+  let eyeZ = 100;
   let cam;
 let forward= -400;
 
@@ -19,7 +23,7 @@ function setup() {
   //noiseSeed(99);
   cam = createCamera();
   cam.move(-300,-300,-130);
-  cam.camera(-200,-200,130,100,100,100,-300,-300,0);
+  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,-300,-300,0);
   //cam.lookAt(200,200,-200);
 /*
   let tiltAng= map(mouseX,0,500,0,2*PI)
@@ -46,11 +50,13 @@ function draw() {
   //  let tiltAng= map(mouseX,0,500,0,2*PI)
   //cam.tilt(tiltAng);
   //cam.tilt()
-  
-  let dx = -(pmouseX - mouseX)/5.0;
-  let dy = -(pmouseY - mouseY)/5.0;
+  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,-300,-300,0);
+
+  let dx = -(pmouseX - mouseX)/1.0;
+  let dy = -(pmouseY - mouseY)/1.0;
   cam.pan(dx);
   cam.tilt(dy);
+
 
 /*
   //Mouse rotation
@@ -70,23 +76,46 @@ function draw() {
    
   // cam.setPosition(x, y,z);
 //console.log(cam);
-
 */
 
-//camera(0, 0, 0, 0, 0, 0, 0, 4, 0);
-
- //  7 camera(mouseX, mouseY, side, 0, 0, 0, 0, 4, 0);
- // worldSize[i];.display();
-
-if (key == 'a') {
-cam.move(0,50,-50);
-console.log("A key:");
 
 }
 
+function keyPressed() {
+  if (key >= 'a' && key <= 'z') {
+    keyIndex = key.charCodeAt(0) - 'a'.charCodeAt(0);
+  }
+  //D key moves to right side
+   if (key =='d'){
+   sideY= sideY +5;
+   sideX= sideX -5;
+   eyeY = eyeY +5;
+    eyeX= eyeX -5;
+   console.log("d key:");
+    }
+    //A key moves to left side
+     if (key =='a'){
+  sideY= sideY -5;
+   eyeY = eyeY -5;
+   sideX= sideX +5;
+   eyeX= eyeX +5;
+   console.log("a key:");
+    }
+    //W key moves forward
+     if (key =='w'){
+   sideX= sideX +5;
+      sideY= sideY +5;
+   eyeX = eyeX +5;
+   eyeY = eyeY +5; 
+   console.log("w key:");
+    }
+    //S key moves backward
+    if (key =='s'){
+   sideX= sideX -5;
+      sideY= sideY -5;
+   eyeX = eyeX -5;
+   eyeY = eyeY -5;
+   console.log("s key:");
+    }
+  }
 
-}
-
-  // key <= 'z') {
-
-//let camera = vector 
