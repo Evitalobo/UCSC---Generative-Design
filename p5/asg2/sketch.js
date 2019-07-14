@@ -4,12 +4,12 @@
 
 
   let world;
-  let sideX=-50;
-  let sideY= -50;
-  let sideZ= 600;
-  let eyeX= 120;
-  let eyeY =120;
-  let eyeZ = 120;
+  let sideX=20;
+  let sideY= 20;
+  let sideZ= 500;
+  let eyeX= 200;
+  let eyeY =200;
+  let eyeZ = 200;
   let cam;
 let forward= -400;
 
