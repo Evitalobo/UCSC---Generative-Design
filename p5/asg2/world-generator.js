@@ -13,8 +13,8 @@ class WorldGenerator{
 		//brick width,height and depth
 		this.brickSize = 16;
 	
-		//edit number to change seed val
-		noiseSeed(90);
+		//edit number to change seed value
+		noiseSeed(42);
    		
 
 

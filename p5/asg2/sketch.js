@@ -2,14 +2,14 @@
 //a world generator and generate a world of size at least equal
 //to w = 32, h = 32 and d = 32.
 
-  //let worldSize =  new Array(999999999);
+
   let world;
   let sideX=-50;
   let sideY= -50;
-  let sideZ= 400;
-  let eyeX= 100;
-  let eyeY =100;
-  let eyeZ = 100;
+  let sideZ= 600;
+  let eyeX= 120;
+  let eyeY =120;
+  let eyeZ = 120;
   let cam;
 let forward= -400;
 
