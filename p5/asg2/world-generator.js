@@ -65,7 +65,7 @@ class WorldGenerator{
     // Method to display
     display() {
 
-    		strokeWeight(.8);
+    		strokeWeight(.5);
 	     	for(let y=0;y<this.height;y++) {
 	     		for(let x=0;x<this.width;x++) {
 					//set z depth value to see how far away from top of world
