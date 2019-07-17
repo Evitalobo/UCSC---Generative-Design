@@ -13,10 +13,11 @@ The production rules and their probabilities should be given as
 class GenerativeGrammar {
     constructor(rules) {
         this.x = width/2;
-        this.y = height;
+        this.y = height - 200;
         this.s = 10;
         this.angle = radians(90);
         this.rules = rules;
+       // this.probability = random(0,1); ///include probability in constructor
         this.stack = [];
     }
 
@@ -25,7 +26,7 @@ class GenerativeGrammar {
 
         // Generations
         for(let i = 0; i < n; i++) {
-            console.log("Generation " + i)
+          //  console.log("Generation " + i)
 
             let ns = "";
             // Iterate on every character of s expanding nonterminals
@@ -40,7 +41,7 @@ class GenerativeGrammar {
                 }
             }
 
-            console.log(ns);
+          //  console.log(ns);
             s = ns;
         }
 
@@ -49,6 +50,7 @@ class GenerativeGrammar {
 
     drawString(s, theta) {
         noFill();
+        stroke(0);
         beginShape();
 
         vertex(this.x, this.y);
@@ -84,6 +86,9 @@ class GenerativeGrammar {
                     this.y -= sin(this.angle) * this.s;
                     vertex(this.x, this.y);
                     break;
+                case "A":
+
+                case "B":
 
                 default:
                     console.log("Command doesn't exist");

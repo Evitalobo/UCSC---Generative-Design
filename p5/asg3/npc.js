@@ -6,3 +6,21 @@ Implement a method to interpret the expanded string as either drawing, story or 
 Use your DialogBox class to display the generated content.
 */
 
+let npcX = 300;
+let npcY = 20;
+
+class NPC{
+	constructor (){
+		this.X = npcX;
+		this.Y = npcY;
+	}
+
+	run(){
+		this.display();
+	}
+
+	display(){
+	rectMode(CENTER);
+	rect(this.X,this.Y,30,30);
+	}	
+}

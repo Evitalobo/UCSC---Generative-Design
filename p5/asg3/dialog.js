@@ -9,13 +9,21 @@ box, so you don't have  to implement scrolling or paging.
 */
 
 class DialogueBox {
-    constructor(interact,choice) {
-    	this.interact = interact;
-        this.choice = no;
+    constructor() {
+    	
     }
-   }
 
-   display(){
 
-   	
-   }
+	 drawDialog(){
+	 	stroke(2);
+	 	fill(255, 255, 255 ,150);
+	 	rect(width/2,height/2 , width,height);
+	 	let s = "Would you like an art piece today? Press 'y' or 'n'";
+	 	 textSize(30);
+	 	 fill(0);
+	 	 textAlign(CENTER);
+	 	text(s,width/2,40);
+
+	 }
+}
+
