@@ -20,3 +20,15 @@ Side view:
 
 
 
+
+# ASG3 - Interactive Artist NPC with Generative Grammars
+Generative Grammars can be used to generate a variety of structured sequences of symbols that are part of a vocabulary. The meaning of these symbols depends on the generative context (e.g. characters, words, colors, musical notes, video game levels, movement instructions, etc). I used non-deterministic grammar to create small little abstract visual art.  The player(circle) will use the WASD keys to move towards the NPC. Once the player is close enough, the NPC will turn yellow and you can press spacebar to interact with it. You can press the "y" key to generate a new abstract art piece and press "n" to close the dialogue box. I used two different axioms to achieve my result. Specific rules included: changing colors, changing stroke color, placing ellipses, placing rectangles and also changing the direction they went. Below are some pictures that I used while progressing through this assignment. 
+
+1st rule(no longer in use):
+![pic1](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG3-2.png?raw=true)
+
+Combination of two rules:
+![pic2](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG3-3.png?raw=true)
+
+Combination of two rules:
+![pic3](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG3-4.png?raw=true)
