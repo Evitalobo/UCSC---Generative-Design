@@ -111,6 +111,17 @@ class GenerativeGrammar {
                     vertex(this.x, this.y);
                     rect(this.x +50,this.y +50,random(0,20),random(0,20));
                     break;
+
+                case "S":
+                    fill(this.colorB -100,this.colorB +70,this.colorB -100);
+                    this.x -= cos(this.angle) * this.s;
+                    this.y += sin(this.angle) * this.s;
+                    stroke(0);
+                    vertex(this.x, this.y);
+                    rect(this.x +100,this.y -100 ,random(0,15),random(0,10));
+                     fill(this.colorR +100,this.colorR -70,this.colorR -100);
+                     ellipse(this.x -100,height/2 + 10 ,random(0,40));
+                    break;
                 default:
                     console.log("Command doesn't exist");
             }

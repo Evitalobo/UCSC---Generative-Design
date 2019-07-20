@@ -44,13 +44,13 @@ if (state === "map"){
 }
 
 }
-
+//redraws map
 function drawMap(){
 	fill(0,20,240);
 ellipse(playX,playY,20);
 
 
-
+//calculate distance
 let d = int(dist(playX, playY, npc.X, npc.Y));
 
 
@@ -64,14 +64,16 @@ let d = int(dist(playX, playY, npc.X, npc.Y));
 	npc.run();
 }
 
+//draws generative grammar
 function drawArt(){
 	   // Lsystem attributes
     let axiom1 = "[ACAB]ACAB";
-    let axiom2 = "[CAT]";
-    let rules = {"A": ["AB[-C*BB]", "T + A"], 
-    			 "B": ["B+C+[T]" , "TB"],
-    			 "C": ["B+[A]*T" , "C - T"],
-    			 "T": ["T-A-T" , "[T]+B"] };
+    let axiom2 = "[CATS]";
+    let rules = {"A": ["AB[-C+BB]", "T + A"], 
+    			 "B": ["BS-C+[T]" , "SA"],
+    			 "C": ["B+AT" , "C - T"],
+    			 "T": ["T-A-T" , "[T]+B"],
+    			 "S": ["-A+SS"] };
 
     GenGram = new GenerativeGrammar(rules); //include probability
     let s1 = GenGram.expand(axiom1,random(1,2));
