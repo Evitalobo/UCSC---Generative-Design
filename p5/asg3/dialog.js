@@ -17,12 +17,12 @@ class DialogueBox {
 	 drawDialog(){
 	 	stroke(2);
 	 	fill(255, 255, 255 ,150);
-	 	rect(width/2,height/2 , width,height);
-	 	let s = "Would you like an art piece today? Press 'y' or 'n'";
+	 	rect(width/2 ,height/2  , width/2 +400,height -50);
+	 	let s = ">Would you want an abstract art piece today? Press 'y' or 'n'";
 	 	 textSize(30);
 	 	 fill(0);
 	 	 textAlign(CENTER);
-	 	text(s,width/2,40);
+	 	text(s,width/2,70);
 
 	 }
 }

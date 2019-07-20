@@ -13,12 +13,16 @@ The production rules and their probabilities should be given as
 class GenerativeGrammar {
     constructor(rules) {
         this.x = width/2;
-        this.y = height - 200;
+        this.y = height/2;
         this.s = 10;
         this.angle = radians(90);
         this.rules = rules;
        // this.probability = random(0,1); ///include probability in constructor
         this.stack = [];
+        this.colorR = random(0,255);
+        this.colorG = random(0,255);
+        this.colorB = random(0,255);
+
     }
 
     expand(axiom, n) {
@@ -34,7 +38,7 @@ class GenerativeGrammar {
                 // If the characte has a rule in the rules, it is
                 // a nonterminal.
                 if(s[j] in this.rules) {
-                    ns += this.rules[s[j]];
+                    ns += random(this.rules[s[j]]);
                 }
                 else {
                     ns += s[j];
@@ -74,22 +78,39 @@ class GenerativeGrammar {
                     this.y = ppos[1];
                     vertex(this.x, this.y);
                     break;
-                case "F":
+                case "A":
+                    stroke(random(0,255));
                     this.x += cos(this.angle) * this.s;
                     this.y -= sin(this.angle) * this.s;
+                     fill(this.colorB +100,this.colorR +70,this.colorG +60);
+                     ellipse(this.x+10,this.y,random(0,30));
                     vertex(this.x, this.y);
                     break;
-                case "G":
+                case "B":
                     endShape();
                     beginShape();
                     this.x += cos(this.angle) * this.s;
                     this.y -= sin(this.angle) * this.s;
-                    vertex(this.x, this.y);
+                    noise(vertex(this.x, this.y));
+
                     break;
-                case "A":
-
-                case "B":
-
+                case "C":
+                    endShape();
+                    beginShape();
+                    fill(this.colorR,this.colorG,this.colorB);
+                    this.x += cos(this.angle) * this.s;
+                    this.y -= sin(this.angle) * this.s;
+                    vertex(this.x - cos(this.angle), this.y +sin(this.angle));
+                   // noStroke();
+                    ellipse(this.x,this.y,random(0,10));
+                    break;
+                case "T":
+                    fill(this.colorR +100,this.colorG +70,this.colorB +60);
+                    this.x += cos(this.angle) * this.s;
+                    this.y -= sin(this.angle) * this.s;
+                    vertex(this.x, this.y);
+                    rect(this.x +50,this.y +50,random(0,20),random(0,20));
+                    break;
                 default:
                     console.log("Command doesn't exist");
             }

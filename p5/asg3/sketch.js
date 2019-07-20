@@ -24,17 +24,19 @@ let npc = new NPC(); //NPC class
 
 
 function setup() {
+	background(0);
     createCanvas(windowWidth, windowHeight);
-    strokeWeight(3);
+    background(0);
+    strokeWeight(1);
 
 
 }
 
 function draw() {
 //draw ellipse character here
-
 if (state === "map"){
 	clear();
+	background(0);
 	drawMap();
 }else if ( state === "dialog"){
 	dBox.drawDialog();
@@ -56,7 +58,7 @@ let d = int(dist(playX, playY, npc.X, npc.Y));
 		fill(240,240,20);
 		canInteract =true;
 	}else{
-		fill(0);
+		fill(255);
 		canInteract = false;
 	}
 	npc.run();
@@ -64,13 +66,19 @@ let d = int(dist(playX, playY, npc.X, npc.Y));
 
 function drawArt(){
 	   // Lsystem attributes
-    let axiom = "F";
-    let rules = {"F": "FG[-F+F]",
-    			 "G": "F+G[FG]"  };
+    let axiom1 = "[ACAB]ACAB";
+    let axiom2 = "[CAT]";
+    let rules = {"A": ["AB[-C*BB]", "T + A"], 
+    			 "B": ["B+C+[T]" , "TB"],
+    			 "C": ["B+[A]*T" , "C - T"],
+    			 "T": ["T-A-T" , "[T]+B"] };
 
     GenGram = new GenerativeGrammar(rules); //include probability
-    let s = GenGram.expand(axiom,random(1,5));
-    GenGram.drawString(s, random(1, 180));
+    let s1 = GenGram.expand(axiom1,random(1,2));
+    let s2 = GenGram.expand(axiom2,random(1,2));
+    GenGram.drawString(s1, random(200, 360) %60);
+     GenGram.drawString(s2, random(90, 360) %30);
+     GenGram.drawString((s1-s2), sin(300));
 
 }
 
@@ -95,9 +103,11 @@ function keyPressed() {
      if (key =='y'){
       //generate grammar
       clear();
+      background(0);
       drawMap();
       	dBox.drawDialog();
        drawArt();
+
    //console.log("y key:");
     }
     if (key =='n'){
