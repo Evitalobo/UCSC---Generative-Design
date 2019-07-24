@@ -2,6 +2,8 @@ let world;
 let race;
 let camera;
 let GA;
+let genNum =1;
+let fitnessLast=0;
 
 function preload() {
   textGen = loadFont('ArcadeClassic.ttf');
@@ -19,6 +21,7 @@ function setup() {
   // Create Camera
   camera.ortho(-width / 2, width / 2, -height / 2, height /2, 0, 10);
   camera.setPosition(0, 0, 0);
+
 
   // Create a list of cars
   let cars = []
@@ -56,12 +59,19 @@ function draw() {
 
         // Follow first car with the camera
         let firstCar = leaderboard[0].car;
-        text(leaderboard[0].car,100,100);
+
+
 
         if (firstCar) {
             let firstPos = firstCar.getPosition();
             camera.setPosition(firstPos.x + width/5, firstPos.y, camera.eyeZ);
+
+            //UI elements
+            text("Generation " +" number " +genNum,100,-150);
+            text("Fitness of last car  " + fitnessLast ,100,-175);
+          
         }
+      
     }
 }
 
@@ -69,18 +79,24 @@ function draw() {
 // Callback function for when the race is over
 // ========================================
 function raceOverCallback(finalLeaderboards) {
+     genNum++;
     console.log("race over!");
-    console.log(finalLeaderboards);
+    console.log(finalLeaderboards[0].progress);
+    //past progress
+    fitnessLast = finalLeaderboards[0].progress;
 
     //GA instantiation of Genetic Algorithms class
     let popSize = 10;
     let indSize = 20;
     let fitFunc = function(gens){
      // console.log(finalLeaderboards);
-     let cars = finalLeaderboards.filter(function(c){
+     let carsArr = finalLeaderboards.filter(function(c){
         return JSON.stringify(c.car.feats) === JSON.stringify(gens);
      });
-     return cars[0] ? cars[0].progress : 0;
+     return carsArr[0] ? carsArr[0].progress : 0;
+     //best car
+     console.log(leaderboard[0].car.progress)
+     
     }
 
     let mutationRate = 0.1;
@@ -102,9 +118,10 @@ function raceOverCallback(finalLeaderboards) {
         let pos = createVector(0, -100);
         let car = new Car(pos.x, pos.y, "car" + i, feats);
         cars.push(car);
+
     }
 
-    console.log(cars)
+   // console.log(cars[0])
     race.setCars(cars);
     race.start();
 
