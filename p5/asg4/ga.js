@@ -1,4 +1,5 @@
 //is the fitnessfunc supposed to be the entire race?? it is evaluated twice in the evolve()func
+//figure out the best car
 
 class Individual {
     constructor(indSize) {
@@ -38,6 +39,22 @@ class GeneticAlgorithm {
     }
 
     //reproduction occurs and chose best candiate
+    /*
+    evolve(N,M,fitnessFunction){
+         population = init(M);
+
+        for(i < 0; to n){
+            evaluate(population, fitnessFunction);
+            matingPool = select(population);
+            newOffspring = crossover(matingPool);
+            mutate(newOffspring);
+            population = newOffspring;
+        }
+        return best(population);
+    }
+    */
+
+
     evolve() {
         this.evaluate();
 
@@ -47,7 +64,7 @@ class GeneticAlgorithm {
 
         this.population = newPopulation;
         //double evaluation
-       // this.evaluate();
+        this.evaluate();
         return this.best();
     }
 
@@ -55,6 +72,7 @@ class GeneticAlgorithm {
         for(let i = 0; i < this.popSize; i++) {
             let individual = this.population[i];
             individual.fitness = this.fitFunc(individual.gens);
+           // console.log(individual)
         }
     }
 
@@ -75,6 +93,7 @@ class GeneticAlgorithm {
         //add all fitness scores
         let sum = this.population.map(function(ind){
                   return ind.fitness;
+
                  }).reduce(function(a,b){
                     return (a + b);
                  });
@@ -82,6 +101,7 @@ class GeneticAlgorithm {
         let prob = this.population.map(function(ind){
             return ind.fitness/sum;
         });
+       // console.log("probability" + prob);
         //Randomize and pick whichever one is selected
         let rand = Math.random();
         for(let i =0; i < prob.length; i++){
@@ -90,6 +110,7 @@ class GeneticAlgorithm {
             }
             rand -= prob[i];
         }
+       // console.log("end of rouletteWheel");
     }
 
     reproduce(matingPool) {
@@ -99,13 +120,16 @@ class GeneticAlgorithm {
             let a = int(random(this.popSize));
             let b = int(random(this.popSize));
 
-            newPopulation[i] = this.crossover(matingPool[a], matingPool[b]);
-        }
 
+
+            newPopulation[i] = this.crossover(matingPool[a], matingPool[b]);
+            
+        }
+//console.log(newPopulation);
         return newPopulation;
     }
 
-    //the crossover() function  to perform your defined crossover operation (e.g. one-point crossover) on a pair of parents.
+    //the crossover() function  to perform
     crossover(parentA, parentB) {
         let ranA = Math.floor(Math.random() * parentA.gens.length);
         let ranB = Math.floor(Math.random() * parentB.gens.length);

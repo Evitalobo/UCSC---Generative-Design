@@ -3,9 +3,14 @@ let race;
 let camera;
 let GA;
 
+function preload() {
+  textGen = loadFont('ArcadeClassic.ttf');
+}
+
 function setup() {
   createCanvas(640, 400, WEBGL);
   setAttributes('antialias', true);
+  textFont(textGen);
 
   // Initialize box2d physics and create the world
   world = createWorld();
@@ -51,6 +56,7 @@ function draw() {
 
         // Follow first car with the camera
         let firstCar = leaderboard[0].car;
+        text(leaderboard[0].car,100,100);
 
         if (firstCar) {
             let firstPos = firstCar.getPosition();
@@ -70,13 +76,14 @@ function raceOverCallback(finalLeaderboards) {
     let popSize = 10;
     let indSize = 20;
     let fitFunc = function(gens){
-     let car = finalLeaderboards.filter(function(c){
+     // console.log(finalLeaderboards);
+     let cars = finalLeaderboards.filter(function(c){
         return JSON.stringify(c.car.feats) === JSON.stringify(gens);
      });
-     return car.progress;
+     return cars[0] ? cars[0].progress : 0;
     }
 
-    let mutationRate = 0.01;
+    let mutationRate = 0.1;
     let mutationFunc = Car.randomFeatures;
 
     GA = new GeneticAlgorithm(popSize, indSize, fitFunc, mutationRate, mutationFunc);
@@ -91,12 +98,13 @@ function raceOverCallback(finalLeaderboards) {
     // Restart race with new cars
     let cars = []
     for(let i = 0; i < 10; i++) {
-        let feats = Car.GeneticAlgorithm();
+        let feats = GA.population[i].gens;
         let pos = createVector(0, -100);
         let car = new Car(pos.x, pos.y, "car" + i, feats);
         cars.push(car);
     }
 
+    console.log(cars)
     race.setCars(cars);
     race.start();
 
