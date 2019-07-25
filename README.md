@@ -32,3 +32,16 @@ Combination of two axioms (with 3rd generation max):
 
 Combination of two axioms (with 3rd generation max):
 ![pic3](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG3-4.png?raw=true)
+
+
+
+
+# ASG4 - Evolving Cars
+Genetic Algorithms (GA) are a stochastic search method inspired by biological evolution  that can be applied to generate complex content with feasibility constraints. I used a Genetic Algorithm to evolve cars to traverse a bumpy terrain- Much similar to BoxCar2D. The genetic algorithm takes the best car at the end of the race and uses it as a parent to create offsprings. The offsprings has two parents and using the rouletteWheel() function, it will pick a value from either parent. Then it will mutate one or few of values stored in the cars features. Without mutation- it would be impossible to have a different input from the parent. Hence the child of the parent will then be generated based on the fitness function. 
+
+7th Generation of cars:
+![pic1](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG4-1.png?raw=true)
+
+4th Generation of cars:
+![pic2](https://github.com/Evitalobo/UCSC---Generative-Design/blob/master/img/ASG4-2.png?raw=true)
+
