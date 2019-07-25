@@ -6,7 +6,8 @@ let genNum =1;
 let fitnessLast=0;
 
 function preload() {
-  textGen = loadFont('ArcadeClassic.ttf');
+  textGen = loadFont('KarmaFuture.ttf');
+
 }
 
 function setup() {
@@ -42,6 +43,7 @@ function setup() {
 }
 
 function draw() {
+    textSize(20);
     if (race.running) {
         background(240);
     }
@@ -67,8 +69,8 @@ function draw() {
             camera.setPosition(firstPos.x + width/5, firstPos.y, camera.eyeZ);
 
             //UI elements
-            text("Generation " +" number " +genNum,100,-150);
-            text("Fitness of last car  " + fitnessLast ,100,-175);
+            text("Generation number : " +genNum,firstPos.x + width/5,firstPos.y-150);
+            text("Fitness of last car : " + fitnessLast ,firstPos.x + width/5,firstPos.y-175);
           
         }
       
