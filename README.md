@@ -1,6 +1,35 @@
 # UCSC - Generative-Design -CMPM 147
 #          Evita Lobo  
 
+# Final Project Proposal
+
+Artist statement:
+  I enjoy playing RPG games but they can get boring after a while if there is not that much randomization. I would like to make a game that uses a different set of generative grammars in combination with having the environment be reactive to audio. In a previous assignment, I simulated ellipses falling down when sound was made to simulate rain. I would like to expand that concept and see how I can interact with an RPG map on screen and change the maps to represent the music being played. I spent lots of time as a kid spending hours playing RPG games and having an entire game soundtrack drilled in my head but the scenery always stayed the same.
+  
+Player Experience:
+  The player will see a map and an NPC character on the other side of the screen. They will need to change the music, which in turn will change the map. Initially, the player cannot walk to the NPC because there are barriers, so as a result- they must change the music/map in order to gain access to the NPC as a part of their quest. I want to have music that isn’t typically RPG oriented but more instrumental centered. For each noise, I will map out different regions of the map to be colored based on that audio. I will also paint the tiles by using watercolor. A similar style is portrayed in a past game I made, Crystal Caves- https://evitalobo.itch.io/ 
+The user can press a specific key or get to a certain part of a map in order to change the map. Thus appearing more like a simple puzzle game. 
+
+Technical details:
+  I am using a combination of audio visualization and generative grammars. I am using audio visualization to build a new map each time based on the music. I am using generative grammars to design a new artwork each time the player can reach the NPC. The combination of the maps and audio visualization will result in a randomized puzzle game to get to the NPC each time. I will use a similar method of 2D terrain generation but also link it with an audio component to give randomized values each time.
+
+Schedule:
+	Friday 08/02 - Create a map that can take in one audio input and refreshes the map based on the snippet of the sound
+	Wednesday 08/07 – Create a system that can switch multiple audio inputs and generate a new map based on that
+	Friday 08/09 – Playtest everything so that there is a game component that creates puzzles for the player based on the map and also elaborate on the generative grammar where the player can pick between two different forms of art
+	Wednesday 08/14 – Make sure every component of the game is working and refined based on playtesting
+
+
+
+
+
+
+
+
+# ASSIGNMENTS
+
+
+
 
 # ASG1 - Music Visualization with particle systems
 Circles fall to the bottom of the screen as thunder crackles and rain hits the floor. Watch the size of the "droplets" get bigger as the music gets louder. I used the FFT(Fast Fourier Transform) to visualize how audio such as a thunder sound can be used to effect particle systems implemented using P5(Construct). Once a particle gets to the bottom of the screen it "dies" and respawns at the top.
