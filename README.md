@@ -1,4 +1,4 @@
-# UCSC - Generative-Design -CMPM 147
+# UCSC - Generative-Design -CMPM 147 Portfolio
 #          Evita Lobo  
 
 # Final Project Proposal
