@@ -14,11 +14,14 @@ Technical details:
   I am using a combination of audio visualization and generative grammars. I am using audio visualization to build a new map each time based on the music. I am using generative grammars to design a new artwork each time the player can reach the NPC. The combination of the maps and audio visualization will result in a randomized puzzle game to get to the NPC each time. I will use a similar method of 2D terrain generation but also link it with an audio component to give randomized values each time.
 
 Schedule:
-	
-		Friday 08/02 - Create a map that can take in one audio input and refreshes the map based on the snippet of the sound
-		Wednesday 08/07 – Create a system that can switch multiple audio inputs and generate a new map based on that
-		Friday 08/09 – Playtest everything so that there is a game component that creates puzzles for the player based on the map and also elaborate on the generative grammar where the player can pick between two different forms of art
-		Wednesday 08/14 – Make sure every component of the game is working and refined based on playtesting
+Friday 08/02 
+	-Create a map that can take in one audio input and refreshes the map based on the snippet of the sound
+Wednesday 08/07 
+	-Create a system that can switch multiple audio inputs and generate a new map based on that
+Friday 08/09 
+	-Playtest everything so that there is a game component that creates puzzles for the player based on the map and also elaborate on the generative grammar where the player can pick between two different forms of art
+Wednesday 08/14 
+	-Make sure every component of the game is working and refined based on playtesting
 
 
 
