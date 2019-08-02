@@ -93,6 +93,6 @@ Genetic Algorithms (GA) are a stochastic search method inspired by biological ev
 	A Markov Chain is a statistical model of a system that changes stochastically from one state to another. It can be applied to generate random sequences  that follow a probability distribution learned from a dataset. In this assignment, you will use a Markov Chain to generate polyphonic music. For this assignment, I downloaded a large collection of classical music. I then created a system that would get data for the markov model from the collection,convert the string info into midi, then convert the midi to piano roll(method to play music on synth) and then play the music based on the piano roll. For the markov model, I would add the data for all of the songs and then randomize the distribution of songs so that it would give back another song chord based on the said duration of the song. By constantly changing the song state, it would give a piece that is created from a variety of different classical music chords.
 
 Combination of two axioms (with 3rd generation max):
-![gif](https://github.com/Evitalobo/IMG/blob/master/img/ASG3-4.png?raw=true)
+![gif](https://gph.is/g/EqBKMzD)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Hn8Nz7Ca9Nw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
