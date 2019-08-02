@@ -14,6 +14,7 @@ class Markhov {
     	//str values separated by a space
       	let beats = str.split(" ");
       	this.prevBeat = "#";
+      	//move index in scope
       	beats.forEach((beat, index, arr) => this.addBeat(beat, index, arr));
     }
   	addBeat(beat, index, arr){
@@ -28,8 +29,9 @@ class Markhov {
         	this.prevBeat = beat;
         }
     }
+    //get current beat and set a "#" at end and then load in the next beat
   	create(){
-      	let maxLength = 140;
+      	let maxLength = 600;//length of music(=tsduration)
       	let currBeat = "#";
       	let str = "";
       	for (let i=0; i < maxLength; i++){
@@ -38,9 +40,11 @@ class Markhov {
           	str += nextBeat + " ";
           	currBeat = nextBeat;
         }
+        //remove space at end
       	return str.trim();
     }
   	getNext(arr){
+  		//randomize song distribution
     	let rand = Math.floor(Math.random() * arr.length);
       	return arr[rand];
     }
