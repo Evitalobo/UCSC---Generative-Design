@@ -42,7 +42,7 @@ function onMIDIsLoaded(pianoRolls) {
     //convert string to midi
     let midiData = midiPlayer.text2Midi(rollText);console.log(midiData);
     //convert midi to pianoRoll
-    let pianoRoll = midiPlayer.notes2PianoRoll(midiData.duration, midiData.tracks[0].notes);
+    let pianoRoll = midiPlayer.notes2PianoRoll(midiData.duration , midiData.tracks[0].notes);
     //play pianoRoll
     midiPlayer.setPianoRoll(pianoRoll, tsCallback);
 

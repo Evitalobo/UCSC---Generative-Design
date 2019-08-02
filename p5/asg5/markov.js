@@ -44,7 +44,7 @@ class Markhov {
       	return str.trim();
     }
   	getNext(arr){
-  		//randomize song distribution
+  		// next song distribution- random probability
     	let rand = Math.floor(Math.random() * arr.length);
       	return arr[rand];
     }
