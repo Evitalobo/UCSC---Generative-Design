@@ -4,14 +4,14 @@
 
 
   let world;
-  let sideX=20;
-  let sideY= 20;
-  let sideZ= 500;
-  let eyeX= 200;
-  let eyeY =200;
-  let eyeZ = 200;
+  let sideX=0;
+  let sideY= 0;
+  let sideZ= 0;
+  let eyeX= 0;
+  let eyeY =0;
+  let eyeZ = 0;
   let cam;
-let forward= -400;
+let forward= 0;
 
 
 function setup() {
@@ -22,8 +22,8 @@ function setup() {
 
 //create a camera object
   cam = createCamera();
-  cam.move(-300,-300,-130);
-  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,-300,-300,0);
+  cam.move(0,0,00);
+  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,0,0,0);
  
  //generate new world
   world = new WorldGenerator(this.seed, 32, 32, 32); 
@@ -37,7 +37,7 @@ function draw() {
   world.run();
 
   //camera updates based on interaction
-  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,-300,-300,0);
+  cam.camera(sideX,sideY,sideZ,eyeX,eyeY,eyeZ,0,0,0);
 }
 
 //Drag mouse to rotate camera view

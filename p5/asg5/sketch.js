@@ -1,5 +1,6 @@
 
 let isClicked = false;
+let button;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -39,6 +40,7 @@ function onMIDIsLoaded(pianoRolls) {
     //use Markhov to create string
     //let rollText = "62_4 . . . . . 61_4 64_4 . . . . . 60_4 66_4 . . . . . 59_4 67_4";
     let rollText = markhov.create();
+   // console.log(rollText);
     //convert string to midi
     let midiData = midiPlayer.text2Midi(rollText);console.log(midiData);
     //convert midi to pianoRoll
