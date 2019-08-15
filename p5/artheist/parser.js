@@ -22,7 +22,10 @@ class GenerativeGrammar {
         this.colorR = random(0,255);
         this.colorG = random(0,255);
         this.colorB = random(0,255);
-
+        this.img1 = loadImage('gameimg/gg1.png');
+        this.img2 = loadImage('gameimg/gg2.png');
+        this.img3 = loadImage('gameimg/gg3.png');
+   
     }
 
     expand(axiom, n) {
@@ -83,7 +86,8 @@ class GenerativeGrammar {
                     this.x += cos(this.angle) * this.s;
                     this.y -= sin(this.angle) * this.s;
                      fill(this.colorB +100,this.colorR +70,this.colorG +60);
-                     ellipse(this.x+10,this.y,random(0,30));
+                     //ellipse(this.x+10,this.y,random(0,30));
+                     image(this.img1);
                     vertex(this.x, this.y);
                     break;
                 case "B":
@@ -103,6 +107,7 @@ class GenerativeGrammar {
                     vertex(this.x - cos(this.angle), this.y +sin(this.angle));
                    // noStroke();
                     ellipse(this.x,this.y,random(0,10));
+                      image(this.img2,this.x -200  ,this.y-200);
                     break;
                 case "T":
                     fill(this.colorR +100,this.colorG +70,this.colorB +60);
@@ -121,6 +126,7 @@ class GenerativeGrammar {
                     rect(this.x +100,this.y -100 ,random(0,15),random(0,10));
                      fill(this.colorR +100,this.colorR -70,this.colorR -100);
                      ellipse(this.x -100,height/2 + 10 ,random(0,40));
+                     image(this.img3,this.x -100 ,this.y)
                     break;
                 default:
                     console.log(s[i], "Command doesn't exist");

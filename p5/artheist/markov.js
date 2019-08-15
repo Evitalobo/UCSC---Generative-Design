@@ -31,7 +31,7 @@ class Markov {
     }
     //get current beat and set a "#" at end and then load in the next beat
   	create(){
-      	let maxLength = 600;//length of music(=tsduration)
+      	let maxLength = 150;//length of music(=tsduration)
       	let currBeat = "#";
       	let str = "";
       	for (let i=0; i < maxLength; i++){

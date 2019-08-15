@@ -1,3 +1,71 @@
+
+
+let bg;
+let playImg;
+let water;
+let npcImg;
+let cactus;
+
+
+function preload(){
+//game imgs
+   bg = loadImage('gameimg/bg.jpeg');
+   playImg = loadImage('gameimg/player.png');
+   npcImg = loadImage('gameimg/npc.png');
+    water = loadImage('gameimg/water.jpeg');
+    cactus =loadImage('gameimg/cactus.png');
+
+
+
+  
+}
+
+/* SETUP */
+function setup(){
+    //p5
+    
+   // bg = loadImage('gameimg/bg.jpeg');
+    createCanvas(600, 400);
+    stroke(2);
+  
+  //markov
+    //button = createButton("Play");
+    //button.position(width - 80, 20);
+    //button.mousePressed(onButtonClicked);
+    //button.elt.setAttribute("disabled", true);
+    midiPlayer = new MidiPlayer();
+    midiPlayer.loadMidis("data/midi_files.json", onMIDIsLoaded);
+  
+    //player
+    setupPlayer();
+  
+    //npc
+    setupNPC();
+}
+
+/* LOOP */
+function draw(){
+    if (state === "map"){
+      //console.log(bg);
+        background(bg);
+        //lava
+        drawWater();
+        //music viz
+        if (roll) renderMusic(roll);
+        //NPC
+      
+        drawNPC();
+        //player
+        updatePlayer();
+        //NPC collision
+        playerNPCcollision();
+    }
+    else if (state === "dialog"){
+      noLoop();
+        drawDialog();
+    }
+}
+
 /* MARKOV MUSIC */
 let button, roll, midiPlayer, markov;
 
@@ -43,18 +111,21 @@ function createPianoRoll(){
 
 /* MARKOV VISUALIZATION */
 function renderMusic(roll){
-  	let h = height / 128,
-    	rollArr = roll.split(".");
-  	while (rollArr.length < width) rollArr = rollArr.concat(rollArr);
-    for (let x=0; x<width; x++){
+  	  let rollArr = roll.split("."),
+        end = Math.min(width, rollArr.length),
+        h = height / 128;
+        let inc=50;//increment x offset
+    for (let x=0; x<end; x++){
         let note = rollArr[x].trim();
         if (!note.length) continue;
         let noteArr = note.split(" ");
         noteArr.forEach(note => {
             let [pitch, w] = note.split("_"),
-                y = map(pitch, 0, 127, 0, height);
-            fill("white");
-            rect(x, y, w, h);
+                y = map(pitch, 20, 100, 0, height-40);
+            //fill("green");
+            //rect((x + 60) + inc, y, w , h + 2 );
+            image(cactus,((x + 60) + inc),y );
+            inc= inc + 20;
         });
     }
 }
@@ -63,14 +134,14 @@ function renderMusic(roll){
 var player = {};
 
 function setupPlayer(){
-	player.x = 10;
+	player.x = 0;
     player.y = height/2;
-    player.radius = 10;
-    player.color = "yellow";
+    player.radius = 25;
     player.vx = 0;
     player.vy = 0;
     player.maxSpeed = 2;
-    player.acceleration = 0.15;
+    player.acceleration = 0.25;
+   // texture(playerImg);
 }
 
 function updatePlayer(){
@@ -91,7 +162,7 @@ function playerMove(){
 }
 
 function playerAcceleration(){
-	if (keyIsDown(65) || keyIsDown(37)){ //left
+	    if (keyIsDown(65) || keyIsDown(37)){ //left
         player.vx -= player.acceleration;
         if (player.vx < -player.maxSpeed){
           player.vx = -player.maxSpeed;
@@ -130,18 +201,27 @@ function playerCollision(){
         c2 = get(p2x, p2y),
         c3 = get(p3x, p3y),
         c4 = get(p4x, p4y);
-    if ((c1[0] > 0 && c1[1] === 0 && c1[2] === 0) ||
-        (c2[0] > 0 && c2[1] === 0 && c2[2] === 0) ||
-        (c3[0] > 0 && c3[1] === 0 && c3[2] === 0) ||
-        (c4[0] > 0 && c4[1] === 0 && c4[2] === 0)){
+    if ((c1[0] === 0 && c2[1] > 165 && c2[2] > 165) ||
+        (c2[0] === 0 && c2[1] > 165 && c2[2] > 165) ||
+        (c3[0] === 0 && c3[1] > 165 && c3[2] > 165) ||
+        (c4[0] === 0 && c4[1] > 165 && c4[2] > 165)){
           if (roll) createPianoRoll();
       	  changeNoise();
+    }
+    if ((c1[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
+        (c2[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
+        (c3[0] < 10 && c3[1] > 0 && c3[2] < 20) ||
+        (c4[0] < 10 && c4[1] > 0 && c4[2] < 20)){
+          player.acceleration =0.1;
+          player.maxSpeed = 0.5;
+        
     }
 }
 
 function playerDraw(){
-	fill(player.color);
-  	ellipse(player.x, player.y, player.radius);
+	//fill(player.color);
+  	//ellipse(player.x, player.y, player.radius);
+     image(playImg, player.x, player.y);
 }
 
 /* DIALOG */
@@ -150,8 +230,8 @@ function drawDialog(){
     stroke(2);
     fill(255, 255, 255 ,150);
     //rect(width/2 ,height/2  , width/2 +400,height -50);
-    let s = ">Would you want an abstract art piece today? Press 'y' or 'n'";
-    textSize(18);
+    let s = ">Thank you for saving me, would you like some art as a gift? Press 'y' or 'n'";
+    textSize(12);
     fill(0);
     textAlign(CENTER);
     text(s,width/2,70);
@@ -163,11 +243,17 @@ function keyPressed(){
     	//trigger gen art
       	drawDialog();
       	drawArt();
+          let s = ">Thank you for saving me, would you like some art as a gift? Press 'y' or 'n'";
+    textSize(12);
+    fill(0);
+    textAlign(CENTER);
+    text(s,width/2,70);
     }
   	else if (keyCode === 78){ //"n"
     	//return to map
       	state = "map";
       	setupPlayer();
+        setupNPC();
 		loop();
     }
 }
@@ -187,29 +273,34 @@ function drawArt(){
     GenGram = new GenerativeGrammar(rules); //include probability
     let s1 = GenGram.expand(axiom1,random(1,2));
     let s2 = GenGram.expand(axiom2,random(1,2));
-    GenGram.drawString(s1, random(200, 360) %60);
-    GenGram.drawString(s2, random(90, 360) %30);
+    GenGram.drawString(s1, random(200, 360) );
+    GenGram.drawString(s2, random(90, 360) );
     //GenGram.drawString((s1-s2), sin(300));
 }
 
 /* PERLIN ANIMATION */
 let t = 0, tIncrement = 0.005,
     redThreshold = 165,
-    gridSize = 10;
+    gridSize = 7;
 
 function changeNoise(){
 	noiseSeed(Math.random()*100);
 }
 
-function drawLava(){
+function drawWater(){
 	//lava floor
-    for (let x=0; x<width; x+=gridSize){
+    for (let x=60; x<width; x+=gridSize){
       for (let y=0; y<height; y+=gridSize){
         let noiseVal = noise(x/100, y/100, t),
-            red = Math.floor(noiseVal * 255);
-        if (red < redThreshold) red = 0;
-        fill(red, 0, 0);
+            hue = Math.floor(noiseVal * 255);
+        if (hue >= redThreshold){
+        
+        fill(0, hue, hue);
+        noStroke();
         rect(x, y, gridSize, gridSize);
+       // image(water, x, y);
+        } 
+
       }
     }
     t += tIncrement;
@@ -219,71 +310,23 @@ function drawLava(){
 let npc = {}, state = "map";
 
 function setupNPC(){
-	npc.x = width - 20;
-  	npc.y = height/2;
+	npc.x = random(100,width - 200);
+  	npc.y = random(100,height/2 - 50);
   	npc.radius = 30;
   	npc.color = "cyan";
 }
 
-function drawPlatforms(){
- 	fill("dimgrey");
-    rect(0, 0, 30, height);
-    rect(width-40, height/2 - 20, 40, 40);
-}
 
 function drawNPC(){
-	fill(npc.color);
-  	ellipse(npc.x, npc.y, npc.radius);
+	//fill(npc.color);
+  	//ellipse(npc.x, npc.y, npc.radius);
+    image(npcImg, npc.x, npc.y);
 }
 
 function playerNPCcollision(){
 	let d = dist(player.x, player.y, npc.x, npc.y);
   	if (d < player.radius + npc.radius){
     	state = "dialog";
-    }
-}
-
-/* SETUP */
-function setup(){
-  	//p5
-  	createCanvas(600, 400);
-    background(0);
-    stroke(2);
-  
-	//markov
-  	//button = createButton("Play");
-  	//button.position(width - 80, 20);
-    //button.mousePressed(onButtonClicked);
-  	//button.elt.setAttribute("disabled", true);
-  	midiPlayer = new MidiPlayer();
-    midiPlayer.loadMidis("data/midi_files.json", onMIDIsLoaded);
-  
-  	//player
-  	setupPlayer();
-  
-  	//npc
-  	setupNPC();
-}
-
-/* LOOP */
-function draw(){
-  	if (state === "map"){
-        background(0);
-        //lava
-        drawLava();
-        //music viz
-        if (roll) renderMusic(roll);
-        //platforms/NPC
-        drawPlatforms();
-        drawNPC();
-        //player
-        updatePlayer();
-      	//NPC collision
-      	playerNPCcollision();
-    }
-  	else if (state === "dialog"){
-    	noLoop();
-      	drawDialog();
     }
 }
 

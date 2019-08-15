@@ -1,6 +1,11 @@
-<html>
-  <head>
-      <!-- Load p5.js for rendering -->
+<html lang="en"><head>
+<title>Oasis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+          <!-- Load p5.js for rendering -->
      <script src="lib/p5.min.js"></script>
      <script src="lib/p5.dom.min.js"></script>
        <!-- Load tone.js -->
@@ -19,11 +24,169 @@
     <script src="npc.js"></script>
    
 
-     
+
+      
+
+ 
+
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: Palatino, Helvetica, sans-serif;
+  color:#6D9491;
+  margin: 0;
+}
+
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #BAE2DC;
+  color: white;
+}
+
+.header h1 {
+  font:Palatino;
+  font-size: 40px;
+}
+
+.header h5 {
+  font:Palatino;
+  font-size: 29px;
+}
+
+.main {   
+  -ms-flex: 100%; 
+  flex: 100%;
+  background-color: white;
+  padding: 20px;
+  font:Helvetica;
+}
+.image {
+  width: 100%;
+
+  
+}
+
+.game{
+  text-align: center;
+  padding: 20px;
+}
+
+.footer {
+  padding: 20px;
+  background: #BAE2DC;
+  color:white;
+}
+
+
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+
+</head>
+
+
+
+
+<body>
+
+<div class="header">
+  <h1>Oasis</h1>
+  <p> Lonesome cowboy just trying to save all the cats and avoid cacti</p>
+</div>
+
+
+
+  <div class="main">
+
+<h2>A Generative RPG experience</h2>
+    <h5>
+    
+            <!-- Load p5.js for rendering -->
+     <script src="lib/p5.min.js"></script>
+     <script src="lib/p5.dom.min.js"></script>
+       <!-- Load tone.js -->
+      <script src="lib/tone.min.js"></script>
+     <script src="lib/tone.midi.min.js"></script>
+
+      <script src="midiPlayer/midiPlayer.js"></script>
+
+     <!-- Load markov model -->
+        <script src="markov.js"></script>
+
+
+    <!-- Load sketch and other scripts -->
+    <script src="parser.js"></script>
+    <script src="dialog.js"></script>
+    <script src="npc.js"></script>
+   
 
     <script src="sketch.js"></script>
-  </head>
-  <body>
-    <!-- Empty Body -->
-  </body>
-</html>
+      
+    
+    
+    
+    The player is a vigilantic cowboy that roams the desert. His quest is to save a cat thats trapped in the desert. The cowboy will have to save the cat and as a reward they get an art piece from the cat. Initially, the player cannot walk to the NPC because there are cacti that will slow the player down. As a result- they must change the map by drinking some water. The music will generate a unique sounding noise by calling a new seed each time. The music depends where the cactus will be placed- representing a midi player that is stretched out. All graphics are hand painted using watercolor. 
+    
+    <br>
+     <br>
+    Objective: <br> -Save the cat <br>
+           -Avoid cacti so you don't go slower <br>
+               -Drink some water to make some music(anyways, here's wonderwall) <br>
+        
+     <br>
+    Controls:  <br>
+        Movement - WASD keys <br>
+            Yes - "Y" key <br>
+            No - "N" key <br>
+    
+    </h5>
+    
+
+
+    <br>
+     Source Code:
+       <a href="https://github.com/Evitalobo/UCSC---Generative-Design/tree/master/p5/artheist">Github</a>
+       
+
+    </p>
+    
+     For more info:
+       <a href="https://evitalobo.github.io/UCSC---Generative-Design/">About Oasis</a>
+
+    </p>
+
+    <div class= "game">
+
+    <script src="sketch.js"></script>
+    </div>
+  
+    
+  </div>
+
+
+<div class="footer">
+  <h2>Check out more games by <a href="mailto:evitarlobo@gmail.com">Evita (evitarlobo@gmail.com)</a> at:  <a href="https://people.ucsc.edu/~elobo/">Luminescent Lobo Studios</a></h2>
+</div>
+
+
+
+</body></html>

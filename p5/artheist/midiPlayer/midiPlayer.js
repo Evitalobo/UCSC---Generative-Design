@@ -1,8 +1,11 @@
 
 let _midiPlayer;
 
+
+
 class MidiPlayer {
     constructor() {
+         
 		this.repeatId;
         this.ts = 0;
         this.pianoRollBufferLength = 30;
@@ -15,9 +18,9 @@ class MidiPlayer {
 
         this.synth = new Tone.PolySynth(10, Tone.Synth, {
             envelope : {
-    			attack  : 0.02,
-    			decay   : 0.1,
-    			sustain : 0.3,
+    			attack  : 0.5,
+    			decay   : 0.2,
+    			sustain : 0.4,
     			release : 1
     		}
     	}).toMaster();
@@ -172,7 +175,7 @@ class MidiPlayer {
             }
 
             _midiPlayer.ts += 1;
-        }, this.tsDuration, 0, 1);
+        }, this.tsDuration,0,200);
     }
 
     pause() {
@@ -192,7 +195,10 @@ class MidiPlayer {
 	}
 
     draw() {
-        background(240);
+        //background(240);
+        console.log("MidiPlayer" );
+       // console.log(bg);
+       
 
         // Draw grid
         noFill();
@@ -204,7 +210,8 @@ class MidiPlayer {
         }
 
         for (let j = 0; j < height/s; j++) {
-            rect(0, j*s, s*width/s, s);
+            image(this.cactus, 0, j*s);
+           rect(0, j*s, s*width/s, s);
         }
 
         // Draw piano roll
@@ -229,7 +236,8 @@ class MidiPlayer {
         }
 
         // Draw time step
-        fill(0, 0, 0, 100);
+        //fill(0, 0, 0, 100);
+        
         rect(0, 0, s, s*128);
     }
 }
