@@ -13,16 +13,26 @@ function preload(){
    playImg = loadImage('gameimg/player.png');
    npcImg = loadImage('gameimg/npc.png');
     water = loadImage('gameimg/water.jpeg');
-    cactus =loadImage('gameimg/cactus.png');  
+    cactus =loadImage('gameimg/cactus.png');
+
+
+
+  
 }
 
 /* SETUP */
 function setup(){
+    //p5
     
-
+   // bg = loadImage('gameimg/bg.jpeg');
     createCanvas(600, 400);
     stroke(2);
-
+  
+  //markov
+    //button = createButton("Play");
+    //button.position(width - 80, 20);
+    //button.mousePressed(onButtonClicked);
+    //button.elt.setAttribute("disabled", true);
     midiPlayer = new MidiPlayer();
     midiPlayer.loadMidis("data/midi_files.json", onMIDIsLoaded);
   
@@ -38,13 +48,14 @@ function draw(){
     if (state === "map"){
       //console.log(bg);
         background(bg);
-        //draw water
+        //lava
         drawWater();
         //music viz
         if (roll) renderMusic(roll);
         //NPC
+      
         drawNPC();
-        //player loop
+        //player
         updatePlayer();
         //NPC collision
         playerNPCcollision();
@@ -58,7 +69,6 @@ function draw(){
 /* MARKOV MUSIC */
 let button, roll, midiPlayer, markov;
 
-//So chrome stops complaining
 function onButtonClicked() {
   	if (button.elt.textContent === "Play"){
     	button.elt.innerHTML = "Pause";
@@ -76,7 +86,6 @@ function onMIDIsLoaded(pianoRolls) {
     //create Markhov model and feed it modelData
     markov = new Markov(modelData);
   	createPianoRoll();
-    //disable button 
   	if (button) button.elt.removeAttribute("disabled");
 }
 
@@ -84,6 +93,7 @@ function createPianoRoll(){
   	//change music requires new midiPlayer
   	midiPlayer.clear();
 	//use Markhov to create string
+    //let rollText = "62_4 . . . . . 61_4 64_4 . . . . . 60_4 66_4 . . . . . 59_4 67_4";
     let rollText = markov.create();
    // console.log(rollText);
     //convert string to midi
@@ -103,7 +113,6 @@ function createPianoRoll(){
 function renderMusic(roll){
   	  let rollArr = roll.split("."),
         end = Math.min(width, rollArr.length),
-        //128 is the visualizer height mapped onto midi player
         h = height / 128;
         let inc=50;//increment x offset
     for (let x=0; x<end; x++){
@@ -112,13 +121,9 @@ function renderMusic(roll){
         let noteArr = note.split(" ");
         noteArr.forEach(note => {
             let [pitch, w] = note.split("_"),
-              //Split the pitch and the duration where w=duration
-              //Remap midi so that it can fill the whole canvas
                 y = map(pitch, 20, 100, 0, height-40);
             //fill("green");
             //rect((x + 60) + inc, y, w , h + 2 );
-
-            //fill musical notes with cactus and spread the distance between them
             image(cactus,((x + 60) + inc),y );
             inc= inc + 20;
         });
@@ -131,12 +136,12 @@ var player = {};
 function setupPlayer(){
 	player.x = 0;
     player.y = height/2;
-    player.radius = 30;
+    player.radius = 20;
     player.vx = 0;
     player.vy = 0;
     player.maxSpeed = 2;
     player.acceleration = 0.25;
-
+   // texture(playerImg);
 }
 
 function updatePlayer(){
@@ -183,7 +188,6 @@ function playerAcceleration(){
     }
 }
 
-//detect player collisions between water and cactus
 function playerCollision(){
 	let p1x = player.x - player.radius - 1,
         p1y = player.y,
@@ -197,38 +201,29 @@ function playerCollision(){
         c2 = get(p2x, p2y),
         c3 = get(p3x, p3y),
         c4 = get(p4x, p4y);
-        //will check each direction vector to see if the color is the color of the water
     if ((c1[0] === 0 && c2[1] > 165 && c2[2] > 165) ||
         (c2[0] === 0 && c2[1] > 165 && c2[2] > 165) ||
         (c3[0] === 0 && c3[1] > 165 && c3[2] > 165) ||
         (c4[0] === 0 && c4[1] > 165 && c4[2] > 165)){
-          //generate new music for each collision with player and water
           if (roll) createPianoRoll();
       	  changeNoise();
     }
-      //will check each direction vector to see if the color is the color of the cacti
     if ((c1[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
         (c2[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
         (c3[0] < 10 && c3[1] > 0 && c3[2] < 20) ||
         (c4[0] < 10 && c4[1] > 0 && c4[2] < 20)){
-      //reduce speed and acceleration if collision
           player.acceleration =0.1;
           player.maxSpeed = 0.5;
     }
-    //otherwise back to double speed
-    else{
-       player.acceleration =0.2;
-          player.maxSpeed = 1.0;
-    }
 }
 
-//cowboy img
 function playerDraw(){
+	//fill(player.color);
+  	//ellipse(player.x, player.y, player.radius);
      image(playImg, player.x, player.y);
 }
 
 /* DIALOG */
-//Activates once player collides with NPC
 function drawDialog(){
 	background(255);
     stroke(2);
@@ -279,12 +274,12 @@ function drawArt(){
     let s2 = GenGram.expand(axiom2,random(1,2));
     GenGram.drawString(s1, random(200, 360) );
     GenGram.drawString(s2, random(90, 360) );
-    
+    //GenGram.drawString((s1-s2), sin(300));
 }
 
 /* PERLIN ANIMATION */
 let t = 0, tIncrement = 0.005,
-    cThreshold = 165,
+    redThreshold = 165,
     gridSize = 7;
 
 function changeNoise(){
@@ -292,12 +287,12 @@ function changeNoise(){
 }
 
 function drawWater(){
-	//water floor
+	//lava floor
     for (let x=60; x<width; x+=gridSize){
       for (let y=0; y<height; y+=gridSize){
         let noiseVal = noise(x/100, y/100, t),
             hue = Math.floor(noiseVal * 255);
-        if (hue >= cThreshold){
+        if (hue >= redThreshold){
         
         fill(0, hue, hue);
         noStroke();
@@ -317,14 +312,16 @@ function setupNPC(){
 	npc.x = random(100,width - 200);
   	npc.y = random(100,height/2 - 50);
   	npc.radius = 30;
+  	npc.color = "cyan";
 }
 
-//Art cat(makes gen art)
+
 function drawNPC(){
+	//fill(npc.color);
+  	//ellipse(npc.x, npc.y, npc.radius);
     image(npcImg, npc.x, npc.y);
 }
 
-//determines distance from npc and player
 function playerNPCcollision(){
 	let d = dist(player.x, player.y, npc.x, npc.y);
   	if (d < player.radius + npc.radius){
