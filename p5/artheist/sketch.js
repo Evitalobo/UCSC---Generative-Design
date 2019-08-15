@@ -117,13 +117,14 @@ function renderMusic(roll){
             let [pitch, w] = note.split("_"),
               //Split the pitch and the duration where w=duration
               //Remap midi so that it can fill the whole canvas
-                y = map(pitch, 20, 100, 0, height-40);
+              //pitch between 30-100
+                y = map(pitch, 40, 100, 0, height);
             //fill("green");
             //rect((x + 60) + inc, y, w , h + 2 );
 
             //fill musical notes with cactus and spread the distance between them
-            image(cactus,((x + 60) + inc),y );
-            inc= inc + 20;
+            image(cactus,((x + 30) + inc),y );
+            inc= inc + 15;
         });
     }
 }
@@ -210,13 +211,13 @@ function playerCollision(){
       	  changeNoise();
     }
       //will check each direction vector to see if the color is the color of the cacti
-    if ((c1[0] < 10 && c2[1] > 100 && c2[2] < 20) ||
-        (c2[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
-        (c3[0] < 10 && c3[1] > 0 && c3[2] < 20) ||
-        (c4[0] < 10 && c4[1] > 0 && c4[2] < 20)){
+    if ((c1[0] < 20 && c2[1] > 50 && c2[2] < 20) ||
+        (c2[0] < 20 && c2[1] > 50 && c2[2] < 20) ||
+        (c3[0] < 20 && c3[1] > 50 && c3[2] < 20) ||
+        (c4[0] < 20 && c4[1] > 50 && c4[2] < 20)){
       //reduce speed and acceleration if collision
           player.acceleration =0.05;
-          player.maxSpeed = 0.2;
+          player.maxSpeed = 0.1;
     }
     //otherwise back to double speed
     else{
@@ -279,26 +280,28 @@ function drawArt(){
     			 "S": ["-A+SS"] };
 
     GenGram = new GenerativeGrammar(rules); //include probability
-    let s1 = GenGram.expand(axiom1,random(1,4));
-    let s2 = GenGram.expand(axiom2,random(1,4));
-    let s3 = GenGram.expand(axiom3,random(1,4));
+    let s1 = GenGram.expand(axiom1,random(2,5));
+    let s2 = GenGram.expand(axiom2,random(2,5));
+    let s3 = GenGram.expand(axiom3,random(2,5));
     GenGram.drawString(s1, random(200, 360) );
     GenGram.drawString(s2, random(90, 360) );
      GenGram.drawString(s3, random(90, 360)%30 );
 
 
 //some img on top of gen art
-     image(img1,random(600),random(400));
-    image(img2,random(600),random(400));
-    image(img3,random(600),random(400));
-   image(img1,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(50,100),random(20,100));
-    image(img3,random(600),random(400),random(20,80),random(20,50),random(20,80),random(20,50),random(80),random(80));
-    image(img1,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100));
-     image(cactus,random(600),random(400),random(20,50),random(20,80),random(40,90),random(20,50),random(20,50),random(80));
-     image(img2,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(50,100),random(20,100));
-    image(water,random(600),random(400),random(20,80),random(40,90),random(20,80),random(40,90)),random(80),(random(40,90));
-    image(img2,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100));
-     image(img3,random(600),random(400),random(40,90),random(20,80),random(40,90),random(20,50),random(40,90),random(80));
+     image(img1,random(400),random(400));
+    image(img2,random(400),random(400));
+    image(img3,random(400),random(400));
+    image(cactus,random(400),random(400));
+    image(water,random(400),random(400));
+   image(img1,random(400),random(400),random(50,100),random(20,100),random(20,100),random(100),random(50,100),random(20,100));
+    image(img3,random(400),random(400),random(20,100),random(2,100),random(20,100),random(20,100),random(50,100),random(100));
+    image(img1,random(400),random(400),random(20,100),random(20,100),random(100),random(20,100),random(50,100),random(20,100));
+     image(cactus,random(400),random(400),random(20,100),random(20,100),random(100),random(20,100),random(50,100),random(100));
+     image(img2,random(400),random(400),random(20,100),random(20,100),random(20,100),random(100),random(50,100),random(20,100));
+    image(water,random(400),random(400),random(20,80),random(40,90),random(20,80),random(40,90)),random(80),(random(40,90));
+    image(img2,random(400),random(400),random(50,100),random(50,100),random(100),random(20,100),random(20,100),random(20,100));
+     image(img3,random(400),random(400),random(50,90),random(50,80),random(40,90),random(20,50),random(40,90),random(80));
     
 }
 

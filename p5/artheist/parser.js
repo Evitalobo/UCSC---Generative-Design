@@ -127,7 +127,7 @@ class GenerativeGrammar {
                     vertex(this.x, this.y);
                     rect(this.x +100,this.y -100 ,random(0,15),random(0,10));
                      fill(this.colorR +100,this.colorR -70,this.colorR -100);
-                     ellipse(this.x -100,height/2 + 40 ,random(0,40));
+                     ellipse(this.x -100,this.x - this.y ,random(0,40));
                      image(this.img3,this.x -100 ,this.y)
                     break;
                 default:
