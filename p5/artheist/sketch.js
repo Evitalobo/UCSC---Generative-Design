@@ -316,7 +316,7 @@ function changeNoise(){
 
 function drawWater(){
 	//water floor
-    for (let x=60; x<width; x+=gridSize){
+    for (let x=80; x<width; x+=gridSize){
       for (let y=0; y<height; y+=gridSize){
         let noiseVal = noise(x/100, y/100, t),
             hue = Math.floor(noiseVal * 255);
