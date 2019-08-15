@@ -207,10 +207,10 @@ function playerCollision(){
       	  changeNoise();
     }
       //will check each direction vector to see if the color is the color of the cacti
-    if ((c1[0] < 10 && c2[1] > 100 && c2[2] < 20) ||
-        (c2[0] < 10 && c2[1] > 100 && c2[2] < 20) ||
-        (c3[0] < 10 && c3[1] > 100 && c3[2] < 20) ||
-        (c4[0] < 10 && c4[1] > 100 && c4[2] < 20)){
+    if ((c1[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
+        (c2[0] < 10 && c2[1] > 0 && c2[2] < 20) ||
+        (c3[0] < 10 && c3[1] > 0 && c3[2] < 20) ||
+        (c4[0] < 10 && c4[1] > 0 && c4[2] < 20)){
       //reduce speed and acceleration if collision
           player.acceleration =0.1;
           player.maxSpeed = 0.5;
