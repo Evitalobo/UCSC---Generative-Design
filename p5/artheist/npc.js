@@ -6,9 +6,6 @@ Implement a method to interpret the expanded string as either drawing, story or 
 Use your DialogBox class to display the generated content.
 */
 
-let npcX = 400;
-let npcY = 300;
-let npcSize = 30
 
 class NPC{
 	constructor (){

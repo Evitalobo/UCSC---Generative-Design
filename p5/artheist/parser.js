@@ -89,6 +89,7 @@ class GenerativeGrammar {
                      //ellipse(this.x+10,this.y,random(0,30));
                      image(this.img1);
                     vertex(this.x, this.y);
+                    image(this.img1);
                     break;
                 case "B":
                     endShape();
@@ -96,6 +97,7 @@ class GenerativeGrammar {
                     this.x += cos(this.angle) * this.s;
                     this.y -= sin(this.angle) * this.s;
                     noise(vertex(this.x, this.y));
+                    image(this.img1);
 
                     break;
                 case "C":
@@ -106,7 +108,7 @@ class GenerativeGrammar {
                     this.y -= sin(this.angle) * this.s;
                     vertex(this.x - cos(this.angle), this.y +sin(this.angle));
                    // noStroke();
-                    ellipse(this.x,this.y,random(0,10));
+                    ellipse(this.x + 20,this.y,random(0,10));
                       image(this.img2,this.x -200  ,this.y-200);
                     break;
                 case "T":
@@ -125,7 +127,7 @@ class GenerativeGrammar {
                     vertex(this.x, this.y);
                     rect(this.x +100,this.y -100 ,random(0,15),random(0,10));
                      fill(this.colorR +100,this.colorR -70,this.colorR -100);
-                     ellipse(this.x -100,height/2 + 10 ,random(0,40));
+                     ellipse(this.x -100,height/2 + 40 ,random(0,40));
                      image(this.img3,this.x -100 ,this.y)
                     break;
                 default:

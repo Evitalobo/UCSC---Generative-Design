@@ -13,7 +13,10 @@ function preload(){
    playImg = loadImage('gameimg/player.png');
    npcImg = loadImage('gameimg/npc.png');
     water = loadImage('gameimg/water.jpeg');
-    cactus =loadImage('gameimg/cactus.png');  
+    cactus =loadImage('gameimg/cactus.png');
+    img1 = loadImage('gameimg/gg1.png');
+    img2 = loadImage('gameimg/gg2.png');
+     img3 = loadImage('gameimg/gg3.png');  
 }
 
 /* SETUP */
@@ -131,7 +134,7 @@ var player = {};
 function setupPlayer(){
 	player.x = 0;
     player.y = height/2;
-    player.radius = 15;
+    player.radius = 20;
     player.vx = 0;
     player.vy = 0;
     player.maxSpeed = 2;
@@ -268,6 +271,7 @@ function drawArt(){
 	   // Lsystem attributes
     let axiom1 = "[ACAB]ACAB";
     let axiom2 = "[CATS]";
+    let axiom3 = "[BATS]"
     let rules = {"A": ["AB[-C+BB]", "T+A"], 
     			 "B": ["BS-C+[T]" , "SA"],
     			 "C": ["B+AT" , "C-T"],
@@ -275,10 +279,26 @@ function drawArt(){
     			 "S": ["-A+SS"] };
 
     GenGram = new GenerativeGrammar(rules); //include probability
-    let s1 = GenGram.expand(axiom1,random(1,2));
-    let s2 = GenGram.expand(axiom2,random(1,2));
+    let s1 = GenGram.expand(axiom1,random(1,4));
+    let s2 = GenGram.expand(axiom2,random(1,4));
+    let s3 = GenGram.expand(axiom3,random(1,4));
     GenGram.drawString(s1, random(200, 360) );
     GenGram.drawString(s2, random(90, 360) );
+     GenGram.drawString(s3, random(90, 360)%30 );
+
+
+//some img on top of gen art
+     image(img1,random(600),random(400));
+    image(img2,random(600),random(400));
+    image(img3,random(600),random(400));
+   image(img1,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(50,100),random(20,100));
+    image(img3,random(600),random(400),random(20,80),random(20,50),random(20,80),random(20,50),random(80),random(80));
+    image(img1,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100));
+     image(cactus,random(600),random(400),random(20,50),random(20,80),random(40,90),random(20,50),random(20,50),random(80));
+     image(img2,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(50,100),random(20,100));
+    image(water,random(600),random(400),random(20,80),random(40,90),random(20,80),random(40,90)),random(80),(random(40,90));
+    image(img2,random(600),random(400),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100),random(20,100));
+     image(img3,random(600),random(400),random(40,90),random(20,80),random(40,90),random(20,50),random(40,90),random(80));
     
 }
 
