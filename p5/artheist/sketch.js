@@ -131,7 +131,7 @@ var player = {};
 function setupPlayer(){
 	player.x = 0;
     player.y = height/2;
-    player.radius = 20;
+    player.radius = 30;
     player.vx = 0;
     player.vy = 0;
     player.maxSpeed = 2;
